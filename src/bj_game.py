@@ -3,6 +3,7 @@ from cards import Deck
 from bj_player import BJ_Player
 
 # todo: dealer should be able to open ppl before drawing another
+# todo: error handling
 
 multiplier = {
     'BlackJack': 2,
@@ -160,11 +161,15 @@ class BJ_game:
                             print(f"A has drawn {player.hand[-1]} \n{player}\n")
                             if len(player.hand) == 5 and player.points <= 21:
                                 player.multiplier = '5 Dragon'
+                                player.over = True
+                                print('5 Dragon! Congrats!')
                             elif len(player.hand) == 3:
                                 for c in player.hand:
                                     if c.value != 7:
                                         break
                                     player.multipler = 'Triple 7s'
+                                    player.over = True
+                                    print('Triple 7s! Congrats!')
                             if player.points > 21:
                                 print('BUST\n')
                                 player.over= True
